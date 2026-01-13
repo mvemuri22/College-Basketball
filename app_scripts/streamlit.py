@@ -245,14 +245,14 @@ st.markdown("---")
 st.header("Inspect a matchup")
 
 if df_display is not None and not df_display.empty:
-    choices = df_display.apply(lambda r: f"{r.home_team}  @  {r.away_team}", axis=1).tolist()
+    choices = df_display.apply(lambda r: f"{r.away_team}  @  {r.home_team}", axis=1).tolist()
     sel = st.selectbox("Choose matchup", ["-- select --"] + choices)
     if sel and sel != "-- select --":
         home, away = [s.strip() for s in sel.split("@")]
         row = df_display[(df_display['home_team']==home) & (df_display['away_team']==away)].iloc[0]
         st.subheader(f"{home} vs {away}")
-        st.write("Monte Carlo mean spread (away-home):", row.get('mean_spread_away_minus_home'))
-        st.write("BART mean spread (away-home):", row.get('mean_spread_away_minus_home_bart'))
+        st.write("Monte Carlo mean spread (away-home):", row.get('spread_mc'))
+        st.write("BART mean spread (away-home):", row.get('spread_bart'))
         st.write("Model spread (avg):", row.get('model_spread'))
         st.write("Fanduel spread (median):", row.get('fanduel_point'))
         st.write("DraftKings spread (median):", row.get('draftkings_point'))

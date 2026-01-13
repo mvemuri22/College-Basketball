@@ -9,6 +9,7 @@ import streamlit as st
 BASE = Path(__file__).resolve().parent
 MONTE_SCRIPT = BASE / "monte_carlo_simulation.py"
 BART_SCRIPT = BASE / "game_simulation_bart.py"
+DATA_CLEANING_SCRIPT = BASE / "data_cleaning.py"
 TORVIK = BASE / "Data/latest_torvik.csv"
 MATCHUPS = BASE / "Data/matchups_today.csv"
 MONTE_OUT = BASE / "matchups_sim_results.csv"
@@ -19,6 +20,7 @@ st.set_page_config(page_title="Basketball MC — Matchups", layout="wide")
 
 st.sidebar.title("Controls")
 n_sims = st.sidebar.slider("Monte Carlo sims per matchup (quick)", 500, 5000, 2000, step=250)
+get_odds = st.sidebar.button("Get Odds and Metrics")
 run_monte = st.sidebar.button("Run Monte Carlo script")
 run_bart = st.sidebar.button("Run BART script")
 run_both = st.sidebar.button("Run Both")
@@ -100,6 +102,17 @@ with top_col1:
 with top_col2:
     st.markdown("### Controls")
     st.write(f"Monte Carlo sims (quick): {n_sims}")
+    if get_odds:
+        st.info("Running data cleaning script...")
+        with st.spinner("Running data_cleaning.py ..."):
+            ok, out = run_script(DATA_CLEANING_SCRIPT)
+            if ok:
+                st.success("Data cleaning finished")
+                st.rerun()
+            else:
+                st.error("Data cleaning failed")
+            st.code(out[:10000])
+
     if run_monte or run_both:
         st.info("Running Monte Carlo script...")
         with st.spinner("Running monte_carlo_simulation.py ..."):

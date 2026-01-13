@@ -1,0 +1,8 @@
+home_team,away_team,mean_spread_away_minus_home,home_win_prob,spread_away_minus_home_bart,avg_result,team,Point,Play
+Howard,Delaware St.,-7.8935,0.6345,-12.63131094,-10.26240547,Howard,-9.5,None
+Alabama St.,Alcorn St.,-5.1385,0.5505,-6.580192118,-5.859346059,Alabama St.,-7.5,Alcorn st cover
+Coppin St.,South Carolina St.,-3.4655,0.504,0.420859577,-1.522320211,Coppin St.,1.5,
+Lamar,Houston Christian,-2.0535,0.466,-9.249978983,-5.651739492,Lamar,-7.5,None
+Northwestern St.,UT Rio Grande Valley,-5.9785,0.571,9.51227075,1.766885375,Northwestern St.,2.5,None
+Texas Southern,Mississippi Valley St.,-6.4105,0.6,-9.364194966,-7.887347483,Texas Southern,-14.5,Miss Valley st cover
+Alabama A&M,Jackson St.,-2.095,0.4515,-5.629368712,-3.862184356,Alabama A&M,-5.5,None

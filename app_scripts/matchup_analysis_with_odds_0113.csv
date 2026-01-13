@@ -1,0 +1,25 @@
+home_team,away_team,mean_spread_away_minus_home,home_win_prob,spread_away_minus_home_bart,avg_result,team,Point
+Akron,Ball St.,-12.876,0.7485,-38.34780722,-25.61190361,Akron,-20.5
+Clemson,Boston College,-11.471,0.727,-21.89309216,-16.68204608,Clemson,-15.5
+Houston,West Virginia,-7.6165,0.6135,-10.33315939,-8.974829695,Houston,-14.5
+Belmont,Valparaiso,-9.0385,0.643,-16.50173644,-12.77011822,Belmont,-10.5
+Nebraska,Oregon,-9.816,0.666,-14.38670357,-12.10135179,Nebraska,-10.5
+Eastern Michigan,Northern Illinois,-2.173,0.458,-19.19428071,-10.68364036,Eastern Michigan,-8.5
+USC,Maryland,-4.762,0.54,-16.2605217,-10.51126085,USC,-8.5
+Creighton,Georgetown,-7.133,0.624,-12.02176319,-9.577381596,Creighton,-8.5
+Syracuse,Florida St.,3.0895,0.309,-14.68798546,-5.799242731,Syracuse,-8.5
+Tennessee,Texas A&M,4.4455,0.2745,-12.26940289,-3.911951446,Tennessee,-8.5
+Eastern Illinois,Western Illinois,-9.038,0.6675,-10.59011639,-9.814058193,Eastern Illinois,-7.5
+New Mexico,Grand Canyon,-9.2565,0.6605,-4.404091251,-6.830295626,New Mexico,-7.5
+Michigan St.,Indiana,1.542,0.352,-5.518344309,-1.988172154,Michigan St.,-7.5
+Louisville,Virginia,-6.9965,0.6035,-2.146544798,-4.571522399,Louisville,-3.5
+Toledo,Ohio,-9.6675,0.681,-1.804889855,-5.736194927,Toledo,-2.5
+Oklahoma St.,Baylor,-4.228,0.53,-1.81431606,-3.02115803,Oklahoma St.,1.5
+Minnesota,Wisconsin,0.5475,0.373,3.754252715,2.150876358,Minnesota,1.5
+Buffalo,Kent St.,-6.462,0.5795,-2.32238385,-4.392191925,Buffalo,2.5
+Western Michigan,Massachusetts,-2.0685,0.4565,7.249130261,2.59031513,Western Michigan,2.5
+Kansas,Iowa St.,1.226,0.355,-1.289438529,-0.031719265,Kansas,3.5
+Duquesne,Dayton,-1.765,0.4465,8.159755285,3.197377643,Duquesne,4.5
+Fresno St.,Colorado St.,2.4315,0.342,5.690325611,4.060912806,Fresno St.,4.5
+Mississippi St.,Alabama,5.067,0.2765,6.952901348,6.009950674,Mississippi St.,4.5
+Oklahoma,Florida,-9.735,0.681,4.238406466,-2.748296767,Oklahoma,6.5

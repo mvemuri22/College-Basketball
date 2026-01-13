@@ -273,4 +273,4 @@ else:
     st.info("No matchups to inspect")
 
 st.markdown("Run this app from your terminal:")
-st.code(r'cd "C:\Users\manas\OneDrive\Documents\College Basketball\App Scripts" && streamlit run streamlit.py')
+st.code(r'cd "C:\Users\manas\OneDrive\Documents\College Basketball\app_scripts" && streamlit run streamlit.py')

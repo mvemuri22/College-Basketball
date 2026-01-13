@@ -108,6 +108,7 @@ with top_col2:
             ok, out = run_script(DATA_CLEANING_SCRIPT)
             if ok:
                 st.success("Data cleaning finished")
+                st.cache_data.clear()
                 st.rerun()
             else:
                 st.error("Data cleaning failed")

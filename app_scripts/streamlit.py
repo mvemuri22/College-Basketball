@@ -222,6 +222,17 @@ if 'draftkings_point' in df_display.columns:
 else:
     df_display['model_minus_draftkings'] = np.nan
 
+# Create clickable links to Bart Torvik team pages
+def create_team_link(team_name):
+    if pd.isna(team_name) or team_name == "N/A":
+        return team_name
+    # URL encode the team name (replace spaces with +)
+    encoded_name = str(team_name).replace(' ', '+')
+    return f'https://barttorvik.com/team.php?team={encoded_name}&year=2026'
+
+df_display['home_team_link'] = df_display['home_team'].apply(create_team_link)
+df_display['away_team_link'] = df_display['away_team'].apply(create_team_link)
+
 # final display columns and formatting
 display_cols = [
     'home_team', 'away_team',
@@ -234,12 +245,35 @@ display_cols = [
 # keep only existing columns
 display_cols = [c for c in display_cols if c in df_display.columns]
 
-display_df = df_display[display_cols].copy()
+display_df = df_display[display_cols + ['home_team_link', 'away_team_link']].copy()
+
+# Replace team columns with their link versions for clickable links
+display_df['home_team'] = display_df['home_team_link']
+display_df['away_team'] = display_df['away_team_link']
+
+# Drop the temporary link columns
+display_df = display_df.drop(columns=['home_team_link', 'away_team_link'])
 
 # nicer representation for NaN
 display_df = display_df.fillna("N/A")
 
-st.dataframe(display_df, use_container_width=True, height=600)
+st.dataframe(
+    display_df, 
+    use_container_width=True, 
+    height=600,
+    column_config={
+        "home_team": st.column_config.LinkColumn(
+            "Home Team",
+            help="Click to view team on Bart Torvik",
+            display_text=".*"
+        ),
+        "away_team": st.column_config.LinkColumn(
+            "Away Team",
+            help="Click to view team on Bart Torvik",
+            display_text=".*"
+        ),
+    }
+)
 
 st.markdown("---")
 st.header("Inspect a matchup")

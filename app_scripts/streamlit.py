@@ -248,7 +248,7 @@ if df_display is not None and not df_display.empty:
     choices = df_display.apply(lambda r: f"{r.away_team}  @  {r.home_team}", axis=1).tolist()
     sel = st.selectbox("Choose matchup", ["-- select --"] + choices)
     if sel and sel != "-- select --":
-        home, away = [s.strip() for s in sel.split("@")]
+        away, home = [s.strip() for s in sel.split("@")]
         row = df_display[(df_display['home_team']==home) & (df_display['away_team']==away)].iloc[0]
         st.subheader(f"{home} vs {away}")
         st.write("Monte Carlo mean spread (away-home):", row.get('spread_mc'))

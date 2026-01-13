@@ -265,12 +265,12 @@ st.dataframe(
         "home_team": st.column_config.LinkColumn(
             "Home Team",
             help="Click to view team on Bart Torvik",
-            display_text=".*"
+            display_text=r"team=([^&]+)"
         ),
         "away_team": st.column_config.LinkColumn(
             "Away Team",
             help="Click to view team on Bart Torvik",
-            display_text=".*"
+            display_text=r"team=([^&]+)"
         ),
     }
 )

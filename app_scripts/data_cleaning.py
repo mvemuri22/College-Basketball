@@ -142,14 +142,14 @@ def scrape_and_save_schedule(url, filename):
         final_df.to_csv(filename, index=False, encoding='utf-8')
         
         print("-" * 50)
-        print(f"✅ Success! Matchups saved to: {filename}")
+        print(f"Success! Matchups saved to: {filename}")
         print(f"A total of {len(final_df)} rows were written.")
         print("-" * 50)
 
     except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching URL or network issue: {e}")
+        print(f"Error fetching URL or network issue: {e}")
     except Exception as e:
-        print(f"❌ An unexpected error occurred: {e}")
+        print(f"An unexpected error occurred: {e}")
 
 scrape_and_save_schedule(SCHEDULE_URL, OUTPUT_FILENAME)
 

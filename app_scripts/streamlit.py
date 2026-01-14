@@ -1,3 +1,4 @@
+from datetime import datetime
 import subprocess
 import sys
 from pathlib import Path
@@ -99,10 +100,59 @@ with top_col1:
     status_df = status_df.rename(columns={k: k for k in status_df.columns})
     st.table(status_df)
 
+def archive_combined_results():
+    """Archive the combined results table with today's date."""
+    archive_base = BASE / "Data" / "archives"
+    archive_base.mkdir(parents=True, exist_ok=True)
+    
+    today = datetime.now().strftime("%Y-%m-%d")
+    archive_dir = archive_base / today
+    archive_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Load and combine the source files
+    df_monte = load_csv_if_exists(MONTE_OUT)
+    df_bart = load_csv_if_exists(BART_OUT)
+    odds_books = load_odds_for_books(ODDS_PATH, books=("fanduel", "draftkings"))
+    
+    # Combine into single dataframe
+    if df_monte is not None:
+        combined_df = df_monte.copy()
+        if df_bart is not None:
+            combined_df = combined_df.merge(
+                df_bart[['home_team','away_team','mean_spread_away_minus_home']],
+                on=['home_team','away_team'], how='left', suffixes=('','_bart')
+            )
+            combined_df = combined_df.rename(columns={'mean_spread_away_minus_home_bart':'spread_bart', 'mean_spread_away_minus_home':'spread_mc'})
+        if odds_books is not None:
+            def canon_key(s: str) -> str:
+                return str(s).strip().lower().replace('.', '').replace("'", "").replace("  ", " ")
+            combined_df['home_key'] = combined_df['home_team'].apply(canon_key)
+            combined_df = combined_df.merge(odds_books, left_on='home_key', right_on='team_key', how='left')
+    
+    # Save combined results
+    archive_file = archive_dir / "combined_results.csv"
+    combined_df.to_csv(archive_file, index=False)
+    
+    return archive_file
+
 with top_col2:
     st.markdown("### Controls")
     st.write(f"Monte Carlo sims (quick): {n_sims}")
+    
+    if refresh:
+        st.info("Refreshing results...")
+        st.cache_data.clear()
+        st.success("✓ Cache cleared, reloading data")
+        st.rerun()
+    
     if get_odds:
+        st.info("Archiving current results...")
+        try:
+            archive_file = archive_combined_results()
+            st.success(f"✓ Archived to `{archive_file.relative_to(BASE)}`")
+        except Exception as e:
+            st.warning(f"Could not archive previous results: {e}")
+        
         st.info("Running data cleaning script...")
         with st.spinner("Running data_cleaning.py ..."):
             ok, out = run_script(DATA_CLEANING_SCRIPT)

@@ -158,7 +158,17 @@ cbb_matchups = cbb_matchups[['MATCHUP','MATCHUP.1']]
 cbb_matchups = cbb_matchups.rename(columns={'MATCHUP': 'Away', 'MATCHUP.1': 'Home'})
 
 #Remove @ from Away and trim
+#If we have an @, create a new column "Home_Advantage" and set it to 3
+for index, row in cbb_matchups.iterrows():
+    if '@' in row['Away']:
+        cbb_matchups.at[index, 'Home_Advantage'] = 3
+    if 'v ' in row['Home']:
+        cbb_matchups.at[index, 'Home_Advantage'] = 0
+    else:
+        cbb_matchups.at[index, 'Home_Advantage'] = 3
 cbb_matchups['Home'] = cbb_matchups['Home'].str.replace('@', '').str.strip()
+#If "v " at beginning of name, remove
+cbb_matchups['Home'] = cbb_matchups['Home'].str.replace(r'^v\s+', '', regex=True).str.strip()
 
 #Remove digits from home and away
 cbb_matchups['Away'] = cbb_matchups['Away'].str.replace(r'\d+', '', regex=True).str.strip()

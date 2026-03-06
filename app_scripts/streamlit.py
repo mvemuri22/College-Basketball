@@ -201,7 +201,7 @@ if df_monte is not None:
     df_display = df_monte.copy()
     if df_bart is not None:
         df_display = df_display.merge(
-            df_bart[['home_team','away_team','mean_spread_away_minus_home']],
+            df_bart[['home_team','away_team','mean_spread_away_minus_home','mean_total']],
             on=['home_team','away_team'], how='left', suffixes=('','_bart')
         )
         # rename bart column to explicit
@@ -304,7 +304,7 @@ display_cols = [
     'model_spread', 'models_agree', 'agree_side',
     'fanduel_point', 'model_minus_fanduel',
     'draftkings_point', 'model_minus_draftkings',
-    'home_win_prob'
+    'home_win_prob', 'mean_total'
 ]
 # keep only existing columns
 display_cols = [c for c in display_cols if c in df_display.columns]

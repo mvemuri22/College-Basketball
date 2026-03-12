@@ -297,14 +297,14 @@ def create_team_link(team_name):
 df_display['home_team_link'] = df_display['home_team'].apply(create_team_link)
 df_display['away_team_link'] = df_display['away_team'].apply(create_team_link)
 
+
 # final display columns and formatting
 display_cols = [
     'home_team', 'away_team',
     'spread_mc', 'spread_bart',
     'model_spread', 'models_agree', 'agree_side',
-    'fanduel_point', 'model_minus_fanduel',
-    'draftkings_point', 'model_minus_draftkings',
-    'home_win_prob', 'mean_total'
+    'draftkings_point',
+    'home_win_prob', 'mean_total', 'mean_total_bart', 'draftkings_'
 ]
 # keep only existing columns
 display_cols = [c for c in display_cols if c in df_display.columns]

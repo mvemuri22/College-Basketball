@@ -222,7 +222,7 @@ def main():
             home_stats = get_regular_team_stats(home_name, away_name, torvik).loc[home_name]  
             away_stats = get_regular_team_stats(home_name, away_name, torvik).loc[away_name] 
             # call your BART simulation function — replace 'simulate_game_bart' with the actual function name
-            spreads,totals = simulate_game(home_name, away_name, num_sims=1000, home_adjustment=3, df=torvik, ftr_df=ftr, use_bart=True)
+            spreads,totals = simulate_game(home_name, away_name, num_sims=1000, home_adjustment=0, df=torvik, ftr_df=ftr, use_bart=True)
 
             results_rows.append({
                 'home_team': home_name,

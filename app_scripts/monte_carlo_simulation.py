@@ -299,6 +299,7 @@ def _find_home_away_cols(df: pd.DataFrame):
 def main():
     base = Path(__file__).resolve().parent
 
+    #read n_sims from command line args, default to 10k
     torvik_path = base / "Data/latest_torvik.csv"
     matchups_path = base / "Data/matchups_today.csv"
     out_path = base / "matchups_sim_results.csv"
